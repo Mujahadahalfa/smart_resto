@@ -9,7 +9,6 @@ import os
 import sys
 import json
 import pickle
-import mysql.connector
 import numpy as np
 from preprocessing import preprocessing_pipeline
 
@@ -287,6 +286,7 @@ def main():
     # ── 1. Koneksi DB & Ambil Data ──
     print("\n[1/5] Mengambil data review dari database...")
     try:
+        import mysql.connector
         conn = mysql.connector.connect(**DB_CONFIG)
         cur  = conn.cursor()
         cur.execute("""
