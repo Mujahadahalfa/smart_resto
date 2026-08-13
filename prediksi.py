@@ -92,6 +92,16 @@ def prediksi_lexicon(teks):
     elif neg > pos: return {'sentimen':'negatif','skor':0.2,'probabilitas':{'positif':0.15,'negatif':0.7,'netral':0.15},'metode':'lexicon'}
     return {'sentimen':'netral','skor':0.5,'probabilitas':{'positif':0.25,'negatif':0.25,'netral':0.5},'metode':'lexicon'}
 
+def load_model():
+    """Load model.pkl, return None jika belum ada / gagal dibaca"""
+    if not os.path.exists(MODEL_PATH):
+        return None
+    try:
+        with open(MODEL_PATH, 'rb') as f:
+            return pickle.load(f)
+    except Exception:
+        return None
+
 def prediksi(teks):
     # Load model
     if not os.path.exists(MODEL_PATH):
